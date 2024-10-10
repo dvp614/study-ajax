@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> Ajax </title>
+<script src="js/jquery.js"></script>
+<script>
+$(function() {
+	$.ajax({
+		url:"js/PERSONS.json",
+		dataType:"json",
+		success:function(data) {
+			if(data.length > 0) {
+				const tb = $("<table />");
+				for(const i in data) {
+					const $id = data[i].id;
+					const $first_name = data[i].first_name;
+					const $last_name = data[i].last_name;
+					const $email = data[i].email;
+					const $gender = data[i].gender;
+					const $ip_address = data[i].ip_address;
+				
+					const row = $("<tr />").append(
+						$("<td />").text($id),
+						$("<td />").text($first_name),
+						$("<td />").text($last_name),
+						$("<td />").text($email),
+						$("<td />").text($gender),
+						$("<td />").text($ip_address)
+					);
+					tb.append(row);
+				}
+				$(".wrap").append(tb);
+			}
+		}
+	});
+});
+</script>
+</head>
+<body>
+  <div class="wrap"></div>
+</body>
+</html>
